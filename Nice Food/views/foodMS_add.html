@@ -1,0 +1,40 @@
+<div data-role="view" data-title="Add Nice Food" data-layout="main" data-model="APP.models.settings" data-init="fn_foodMS_add_init">
+    <!--<h1 data-bind="html: title"></h1>-->
+
+    <ul data-role="listview" data-style="inset">
+        <li>
+            <ul id="btnGrp_halal" data-role="buttongroup">
+                <li>Halal</li>
+                <li>Non-halal</li>
+            </ul>
+        </li>
+        <li>
+            <label>
+                Food Type
+                <select id="dropdown">
+                    <option value="1">Malay</option>
+                    <option value="2">Chinese</option>
+                    <option value="3">Indian</option>
+                    <option value="4">Japanese</option>
+                    <option value="5">Korean</option>
+                    <option value="6">Italian</option>
+                    <option value="99">Others</option>
+                </select>
+            </label>
+        </li>
+       
+        <li ><label>Restaurant Name <input type="text" value="" id="txt_shop_name" /></label></li>
+         <li style="text-align:center"><button data-role="button">Submit</button></li>
+    </ul>
+    
+    <div style="padding:10px">
+        
+        Lat: <div id="lat">[lat]</div> <br />
+        Lng: <div id="lng">[lng]</div><br />
+        FB Name: <div id="fb_name">[FB Name]</div><br />
+        FB Email: <div id="fb_email">[FB Email]</div><br />
+        Device UUID: <div id="device_UUID">[Device UUID]</div>
+        
+    </div>
+
+</div>
