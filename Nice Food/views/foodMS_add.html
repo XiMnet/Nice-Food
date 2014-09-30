@@ -1,7 +1,28 @@
-<div data-role="view" data-title="Add Nice Food" data-layout="main"  data-model="foodMS" id="foodMS_add" data-after-show="init_foodMS">
+<div data-role="view" data-title="Add Nice Food" data-layout="main" data-model="foodMS_add" id="view-foodMS-add" data-after-show="fn_foodMS_add_after_show">
     <!--<h1 data-bind="html: title"></h1>-->
 
-    <ul data-role="listview" data-style="inset">
+    <ul data-role="listview">
+        <li>
+            <button data-role="button" data-bind="events: { click: fn_take_picture }">Take picture</button>
+        </li>
+    </ul>
+
+    <ul data-role="listview" data-style="inset" id="ul-google-place" style="display:none">
+        <li>
+            <label>
+                Find Location:
+                <input type="text" value="" id="location" />
+            </label>
+        </li>
+        <li>
+            <button data-role="button" data-bind="events: { click: fn_find_place_on_map }">Go to location</button>
+        </li>
+        <li>
+            <div id="map-canvas"></div>
+        </li>
+    </ul>
+
+    <ul data-role="listview" data-style="inset" id="ul-food-add">
         <li>
             <ul id="btnGrp_halal" data-role="buttongroup">
                 <li>Halal</li>
@@ -23,42 +44,50 @@
             </label>
         </li>
 
-        <li >
+        <li>
             <label>
                 Restaurant Name
                 <input type="text" value="" id="txt_shop_name" />
             </label>
         </li>
-        
-        <li >
+
+        <li>
             <label>
                 Map
-                
-                
-                 <span id="loginWithFacebook" data-bind="events: { click: showMessage }">
-                        <button data-role="button">Select</button>
-                    </span>
-                
+                <button data-role="button" data-bind="events: { click: showMessage }">Show</button>
+
             </label>
         </li>
-        
+
         <li style="text-align:center">
             <button data-role="button">Submit</button>
+            <button data-role="button" data-bind="events: { click: fn_cancel_food_add }">Cancel</button>
         </li>
     </ul>
 
-    <div style="padding:10px">
-
+    <div style="margin-top: 150px; padding:10px 10px 10px 10px; background-color: gray; color: #fff;">
+        <strong>Log:</strong>
+        <br /><br />
+        Date:
+        <div id="report-date">[date]</div> <br />
         Lat:
-        <div id="lat">[lat]</div> <br />
+        <div id="report-lat">[lat]</div> <br />
         Lng:
-        <div id="lng">[lng]</div><br />
+        <div id="report-lng">[lng]</div><br />
+
+        Location:
+        <div id="report-location">[location]</div><br />
+
         FB Name:
         <div id="fb_name">[FB Name]</div><br />
         FB Email:
         <div id="fb_email">[FB Email]</div><br />
         Device UUID:
         <div id="device_UUID">[Device UUID]</div>
+        <br />
+        <div id="log">
+            Log
+        </div>
 
     </div>
 

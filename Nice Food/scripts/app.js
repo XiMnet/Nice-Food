@@ -1,3 +1,4 @@
+
 (function () {
     // store a reference to the application object that will be created
     // later on so that we can use it if need be
@@ -10,10 +11,7 @@
                     title: 'Home'
                 },
             settings: {
-                    title: 'Settings',
-                    touchstart: function(e) {
-                        alert("touch");
-                    }
+                    title: 'Settings'
                 },
             contacts: {
                     title: 'Contacts',
@@ -26,28 +24,21 @@
                 }
         }
     };
-    
-    var fooo = { 
-        bar: "baz", 
-        touchstart: function(e) {
-            alert("touch");
-        }
-    }
-    
+
     // this function is called by Cordova when the application is loaded by the device
-    document.addEventListener('deviceready', function () {  
-        // hide the splash screen as soon as the app is ready. otherwise
-        // Cordova will wait 5 very long seconds to do it for you.
-        navigator.splashscreen.hide();
+    //   document.addEventListener('deviceready', function () {  
+    // hide the splash screen as soon as the app is ready. otherwise
+    // Cordova will wait 5 very long seconds to do it for you.
+    //   navigator.splashscreen.hide();
 
-        app = new kendo.mobile.Application(document.body, {
+    app = new kendo.mobile.Application(document.body, {
         
-                                               // comment out the following line to get a UI which matches the look
-                                               // and feel of the operating system
-                                               skin: 'flat',
+                                           // comment out the following line to get a UI which matches the look
+                                           // and feel of the operating system
+                                           skin: 'flat',
 
-                                               // the application needs to know which view to load first
-                                               initial: 'views/home.html'
-                                           });
-    }, false);
+                                           // the application needs to know which view to load first
+                                           initial: 'views/home.html'
+                                       });
+    // }, false);
 }());

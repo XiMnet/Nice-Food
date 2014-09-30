@@ -1,73 +1,62 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <meta charset="utf-8" />
-        <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-        <link href="styles/main.css" rel="stylesheet" />
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+    <link href="styles/main.css" rel="stylesheet" />
 
-        <script src="cordova.js"></script>
-        <script src="kendo/js/jquery.min.js"></script>
-        <!--<script src="kendo/js/kendo.mobile.min.js"></script>-->
-        <script src="kendo/js/kendo.all.min.js"></script>
+    <!--Libraries-->
+    <script src="cordova.js"></script>
+    <script src="kendo/js/jquery.min.js"></script>
+    <script src="kendo/js/kendo.mobile.min.js"></script>
+    <!--<script src="kendo/js/kendo.all.min.js"></script>-->
+    
+    <!--Google Map-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_xpaM8HTVrbKqiDf_XgznkB7_2DKYCWc&sensor=true&libraries=places">
+    </script>
 
-        <script src="scripts/app.js"></script>
-        <script src="scripts/foodMS.js"></script>
+    <!--models-->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/foodMS_add.js"></script>
 
-    </head>
-    <body>
+   
 
-        <div data-role="layout" data-id="main">
-            <div data-role="header">
-                <div data-role="navbar">
-                    <span data-role="view-title"></span>
-                    <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
-                </div>
+</head>
+<body>
+
+    <div data-role="layout" data-id="main">
+        <div data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+                <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
             </div>
-
-            <!-- application views will be rendered here -->
-
         </div>
 
-        <!-- application drawer and contents -->
-        <div data-role="drawer" id="appDrawer" style="width: 270px" data-title="Navigation">
-            <div data-role="header">
-                <div data-role="navbar">
-                    <span data-role="view-title"></span>
-                </div>
+        <!-- application views will be rendered here -->
+
+    </div>
+
+    <!-- application drawer and contents -->
+    <div data-role="drawer" id="appDrawer" style="width: 270px" data-title="Navigation">
+        <div data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
             </div>
-            <ul data-role="listview">
-                <li>
-                    <a href="views/home.html">Home</a>
-                </li>
-                <li>
-                    <a href="views/foodMS_add.html">Add Food</a>
-                </li>
-                <li>
-                    <a href="views/settings.html">Settings</a>
-                </li>
-
-            </ul>
         </div>
-        <script>
-            function fn_foodMS_add_init() {
-                var body = $(".km-pane");
-           
-                if (kendo.ui.DropDownList) {
-                    $("#dropdown").kendoDropDownList({
-                                                         // The options are needed only for the desktop demo, remove them for mobile.
-                                                         popup: { appendTo: body },
-                                                         animation: { open: { effects: body.hasClass("km-android") ? "fadeIn" : body.hasClass("km-ios") || body.hasClass("km-wp") ? "slideIn:up" : "slideIn:down" } }
-                                                     });
-                }
+        <ul data-role="listview">
+            <li>
+                <a href="views/home.html">Home</a>
+            </li>
+            <li>
+                <a href="views/foodMS_add.html">Add Food</a>
+            </li>
+            <!--<li>
+                <a href="views/settings.html">Settings</a>
+            </li>-->
 
-                if (kendo.ui.Slider) {
-                    $("#slider").kendoSlider({ tooltip: { enabled: false } });
-                }
-                              
-               
-            }
-        </script>
-    </body>
+        </ul>
+    </div>
+</body>
+
 </html>
-            
