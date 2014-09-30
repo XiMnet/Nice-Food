@@ -1,4 +1,3 @@
-
 (function () {
     // store a reference to the application object that will be created
     // later on so that we can use it if need be
@@ -11,7 +10,10 @@
                     title: 'Home'
                 },
             settings: {
-                    title: 'Settings'
+                    title: 'Settings',
+                    touchstart: function(e) {
+                        alert("touch");
+                    }
                 },
             contacts: {
                     title: 'Contacts',
@@ -24,7 +26,14 @@
                 }
         }
     };
-
+    
+    var fooo = { 
+        bar: "baz", 
+        touchstart: function(e) {
+            alert("touch");
+        }
+    }
+    
     // this function is called by Cordova when the application is loaded by the device
     document.addEventListener('deviceready', function () {  
         // hide the splash screen as soon as the app is ready. otherwise
@@ -40,7 +49,5 @@
                                                // the application needs to know which view to load first
                                                initial: 'views/home.html'
                                            });
-       
-      
     }, false);
 }());

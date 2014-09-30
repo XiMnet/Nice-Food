@@ -1,4 +1,4 @@
-<div data-role="view" data-title="Add Nice Food" data-layout="main" data-model="APP.models.settings" data-init="fn_foodMS_add_init">
+<div data-role="view" data-title="Add Nice Food" data-layout="main"  data-model="foodMS" id="foodMS_add" data-after-show="init_foodMS">
     <!--<h1 data-bind="html: title"></h1>-->
 
     <ul data-role="listview" data-style="inset">
@@ -22,19 +22,44 @@
                 </select>
             </label>
         </li>
-       
-        <li ><label>Restaurant Name <input type="text" value="" id="txt_shop_name" /></label></li>
-         <li style="text-align:center"><button data-role="button">Submit</button></li>
+
+        <li >
+            <label>
+                Restaurant Name
+                <input type="text" value="" id="txt_shop_name" />
+            </label>
+        </li>
+        
+        <li >
+            <label>
+                Map
+                
+                
+                 <span id="loginWithFacebook" data-bind="events: { click: showMessage }">
+                        <button data-role="button">Select</button>
+                    </span>
+                
+            </label>
+        </li>
+        
+        <li style="text-align:center">
+            <button data-role="button">Submit</button>
+        </li>
     </ul>
-    
+
     <div style="padding:10px">
-        
-        Lat: <div id="lat">[lat]</div> <br />
-        Lng: <div id="lng">[lng]</div><br />
-        FB Name: <div id="fb_name">[FB Name]</div><br />
-        FB Email: <div id="fb_email">[FB Email]</div><br />
-        Device UUID: <div id="device_UUID">[Device UUID]</div>
-        
+
+        Lat:
+        <div id="lat">[lat]</div> <br />
+        Lng:
+        <div id="lng">[lng]</div><br />
+        FB Name:
+        <div id="fb_name">[FB Name]</div><br />
+        FB Email:
+        <div id="fb_email">[FB Email]</div><br />
+        Device UUID:
+        <div id="device_UUID">[Device UUID]</div>
+
     </div>
 
 </div>
