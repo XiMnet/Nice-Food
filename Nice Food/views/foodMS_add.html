@@ -4,6 +4,7 @@
     <ul data-role="listview">
         <li>
             <button data-role="button" data-bind="events: { click: fn_take_picture }">Take picture</button>
+            <img id="myImage" style="width:100%;" />
         </li>
     </ul>
 
@@ -27,35 +28,28 @@
             <ul id="btnGrp_halal" data-role="buttongroup">
                 <li>Halal</li>
                 <li>Non-halal</li>
+                <li>Vegetarian</li>
             </ul>
         </li>
-        <li>
-            <label>
-                Food Type
-                <select id="dropdown">
-                    <option value="1">Malay</option>
-                    <option value="2">Chinese</option>
-                    <option value="3">Indian</option>
-                    <option value="4">Japanese</option>
-                    <option value="5">Korean</option>
-                    <option value="6">Italian</option>
-                    <option value="99">Others</option>
-                </select>
-            </label>
-        </li>
+        <!--  <li>
+        <label>
+        Food Type
+        <select id="dropdown">
+        <option value="1">Malay</option>
+        <option value="2">Chinese</option>
+        <option value="3">Indian</option>
+        <option value="4">Japanese</option>
+        <option value="5">Korean</option>
+        <option value="6">Italian</option>
+        <option value="99">Others</option>
+        </select>
+        </label>
+        </li>-->
 
         <li>
             <label>
-                Restaurant Name
-                <input type="text" value="" id="txt_shop_name" />
-            </label>
-        </li>
-
-        <li>
-            <label>
-                Map
-                <button data-role="button" data-bind="events: { click: showMessage }">Show</button>
-
+                Comment
+                <input type="text" value="" id="txt_comment" />
             </label>
         </li>
 
@@ -67,6 +61,7 @@
 
     <div style="margin-top: 150px; padding:10px 10px 10px 10px; background-color: gray; color: #fff;">
         <strong>Log:</strong>
+        <img style="display:none;margin:5px auto; width:120px; height:120px;" id="smallImage"  />
         <br /><br />
         Date:
         <div id="report-date">[date]</div> <br />
