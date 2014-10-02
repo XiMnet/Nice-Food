@@ -4,26 +4,9 @@
     <ul data-role="listview">
         <li>
             <button data-role="button" data-bind="events: { click: fn_take_picture }">Take picture</button>
-            <img id="myImage" style="width:100%;" />
+            <img id="img_camera" style="width:90%;" />
         </li>
-    </ul>
-
-    <ul data-role="listview" data-style="inset" id="ul-google-place" style="display:none">
-        <li>
-            <label>
-                Find Location:
-                <input type="text" value="" id="location" />
-            </label>
-        </li>
-        <li>
-            <button data-role="button" data-bind="events: { click: fn_find_place_on_map }">Go to location</button>
-        </li>
-        <li>
-            <div id="map-canvas"></div>
-        </li>
-    </ul>
-
-    <ul data-role="listview" data-style="inset" id="ul-food-add">
+   
         <li>
             <ul id="btnGrp_halal" data-role="buttongroup">
                 <li>Halal</li>
@@ -31,31 +14,16 @@
                 <li>Vegetarian</li>
             </ul>
         </li>
-        <!--  <li>
-        <label>
-        Food Type
-        <select id="dropdown">
-        <option value="1">Malay</option>
-        <option value="2">Chinese</option>
-        <option value="3">Indian</option>
-        <option value="4">Japanese</option>
-        <option value="5">Korean</option>
-        <option value="6">Italian</option>
-        <option value="99">Others</option>
-        </select>
-        </label>
-        </li>-->
-
         <li>
             <label>
-                Comment
+                Say something
                 <input type="text" value="" id="txt_comment" />
             </label>
         </li>
 
         <li style="text-align:center">
             <button data-role="button" data-bind="events: { click: fn_submit_food_add }">Submit</button>
-            <button data-role="button" data-bind="events: { click: fn_cancel_food_add }">Cancel</button>
+            <button data-role="backbutton" >Cancel</button>
         </li>
     </ul>
 

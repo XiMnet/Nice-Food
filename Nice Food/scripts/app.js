@@ -1,7 +1,7 @@
 //START - config
 var _str_url = "";
-_str_url = "http://develop.alchemedia-01.ximnet.my/ximnet_lab/TelerikAppBuilder/NiceFood/web/services/";
-//_str_url = "http://lab_telerikappbuilder_mobileproto1.ximnet.com.my/services/"
+//_str_url = "http://develop.alchemedia-01.ximnet.my/ximnet_lab/TelerikAppBuilder/NiceFood/web/services/";
+_str_url = "http://Lab_TelerikAppBuilder_NiceFood.ximnet.com.my/services/"
 
 var _int_update_location_internal = 5000; //miliseconds to update location to database
 var _int_check_update_internal = 5000; //miliseconds to check if need to update (used in report_crime.js)
@@ -10,8 +10,18 @@ var _int_to_update_device = 0; // to update device crime display or not
 
 var _user_email = "huisheng@ximnet.com.my"; //store user email, temporary use my email, later change to FB email
 var _user_ID = "123456"; //store user ID, temporary use 123456, later change to FB ID
+var _food_photo_width = 1024; //resize food photo to this width
+var _food_photo_height = 1024; //resize food photo to this height
+var _food_photo_quality = 80; //compress food photo to this quality
 
 //END - config
+
+function _fn_error(str_error){
+    alert(str_error);
+}
+function _fn_log(str_log){
+    $("#log").html($("#log").html + "<br />" + str_log);
+}
 
 
 (function () {
