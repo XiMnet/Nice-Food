@@ -1,3 +1,18 @@
+//START - config
+var _str_url = "";
+_str_url = "http://develop.alchemedia-01.ximnet.my/ximnet_lab/TelerikAppBuilder/NiceFood/web/services/";
+//_str_url = "http://lab_telerikappbuilder_mobileproto1.ximnet.com.my/services/"
+
+var _int_update_location_internal = 5000; //miliseconds to update location to database
+var _int_check_update_internal = 5000; //miliseconds to check if need to update (used in report_crime.js)
+var _int_distance_KM_update_device = 5; // how many KM to update device on a new reported crime
+var _int_to_update_device = 0; // to update device crime display or not
+
+var _user_email = "huisheng@ximnet.com.my"; //store user email, temporary use my email, later change to FB email
+var _user_ID = "123456"; //store user ID, temporary use 123456, later change to FB ID
+
+//END - config
+
 
 (function () {
     // store a reference to the application object that will be created

@@ -1,4 +1,3 @@
-
 //Google Map variables
 var map;
 var marker;
@@ -15,84 +14,106 @@ var place;
 var autocomplete;
 
 var foodMS_add = kendo.observable({
-    description: "Description",
-    isDescriptionShown: false,
-    showDescription: function (e) {
-        // show the span by setting isDescriptionShown to true
-        this.set("isDescriptionShown", true);
-    },
-    showMessage: function (e) {
-        alert(this.get("isDescriptionShown"));
-    },
-    fn_take_picture: function (e) {
-         // var success = function (data) {
-                //     $("#images")
-                //         .data("kendoMobileListView")
-                //         .prepend(["data:image/jpeg;base64," + data]);
-                // };
-                var success = function (data) {
-                    
-                        //Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
-                        //ContentType: "image/jpeg",
-                        //base64: data
-                    
-                    foodMS_add.fn_load_photo(data);
-                    
-                };
-                var error = function () {
-                    navigator.notification.alert("Unfortunately we could not add the image");
-                };
-                var config = {
-                    destinationType: Camera.DestinationType.DATA_URL,
-                    targetHeight: 400,
-                    targetWidth: 400
-                };
-                navigator.camera.getPicture(success, error, config);
-    },
-    fn_load_photo: function(imageData) {
-         var image = document.getElementById('myImage');
-           image.src = "data:image/jpeg;base64," + imageData;
-    },
-    fn_cancel_food_add: function (e) {
-        $("#ul-food-add").hide();
-        $("#map-canvas").show();
-        $("#ul-google-place").show();
-    },
-    fn_find_place_on_map: function (e) {
-        var newlatlong = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
+                                      description: "Description",
+                                      isDescriptionShown: false,
+                                      showDescription: function (e) {
+                                          // show the span by setting isDescriptionShown to true
+                                          this.set("isDescriptionShown", true);
+                                      },
+                                      showMessage: function (e) {
+                                          alert(this.get("isDescriptionShown"));
+                                      },
+                                      Food_Photo_Data: "",
+                                      fn_take_picture: function (e) {
+                                          function onFail(message) {
+                                              alert('Failed because: ' + message);
+                                          }
 
-        // fn_search_nearby(1, place.geometry.location.lat(), place.geometry.location.lng());
+                                          function onPhotoDataSuccess(imageData) {
+                                              console.log(imageData);
 
-        map.setCenter(newlatlong);
-        marker.setPosition(newlatlong);
-        map.setZoom(19);
+                                              var smallImage = document.getElementById('smallImage');
 
-        var html = "Your selected area.";
+                                              smallImage.style.display = 'block';
 
-        google.maps.event.addListener(marker, 'click', function () {
-            infoWindow_Food.setContent(html);
-            infoWindow_Food.open(map, marker);
-        });
+                                              smallImage.src = "data:image/jpeg;base64," + imageData;
+                                              //myData = imageData;
+                                              foodMS_add.Food_Photo_Data = imageData;
+                                              //$("#comment").text(imageData.length);
+                                          }
+                                          
+                                          navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+                                                                          quality : 50,
+                                                                          destinationType :  Camera.DestinationType.DATA_URL,
+                                                                          sourceType : Camera.PictureSourceType.CAMERA
+                                                                      });
+                                      },
+                                      fn_submit_food_add: function(e) {
+                                          var imageData = foodMS_add.Food_Photo_Data;
+                                          $.ajax({
+                                                     type : "POST",
+                                                     url : _str_url + 'foodMS_food_photo.ashx',
+                                                     data : {
+                                                  image : imageData
+                                              },
+                                                     beforeSend : function() {
+                                                         
+                                                         $("#log").html($("#log").html + "<br />" + "Start ajax " )
+                                                         
+                                                     },
+                                                     success : function(data) {
+                                                       
+                                                         $("#log").html($("#log").html + "<br />" + "Uploaded! " )
+                                                         
+                                                     },
+                                                     error : function(request, error) {
+                                                         
+                                                         $("#log").html($("#log").html + "<br />" + "Error! " + error)
+                                                     }
+                                                 });
+                                      },
+                                      fn_cancel_food_add: function (e) {
+                                          $("#ul-food-add").hide();
+                                          $("#map-canvas").show();
+                                          $("#ul-google-place").show();
+                                      },
+                                      fn_find_place_on_map: function (e) {
+                                          var newlatlong = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
 
-        // resolve location name by coordinates
-        var geocoder;
+                                          // fn_search_nearby(1, place.geometry.location.lat(), place.geometry.location.lng());
 
-        geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'latLng': newlatlong }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
-                    $("#report-location").html(results[1].formatted_address);
-                } else {
-                    // alert('No results found');
-                    $("#report-location").html("Address not found.");
-                }
-            } else {
-                alert('Geocoder failed due to: ' + status);
-            }
-        });
-    }
-});
+                                          map.setCenter(newlatlong);
+                                          marker.setPosition(newlatlong);
+                                          map.setZoom(19);
+
+                                          var html = "Your selected area.";
+
+                                          google.maps.event.addListener(marker, 'click', function () {
+                                              infoWindow_Food.setContent(html);
+                                              infoWindow_Food.open(map, marker);
+                                          });
+
+                                          // resolve location name by coordinates
+                                          var geocoder;
+
+                                          geocoder = new google.maps.Geocoder();
+                                          geocoder.geocode({ 'latLng': newlatlong }, function (results, status) {
+                                              if (status == google.maps.GeocoderStatus.OK) {
+                                                  if (results[1]) {
+                                                      $("#report-location").html(results[1].formatted_address);
+                                                  } else {
+                                                      // alert('No results found');
+                                                      $("#report-location").html("Address not found.");
+                                                  }
+                                              } else {
+                                                  alert('Geocoder failed due to: ' + status);
+                                              }
+                                          });
+                                      }
+                                  });
+
 //kendo.bind($("#foodMS_add"), viewModel);
+
 
 var fn_foodMS_add_after_show = function (e) {
     //if (kendo.ui.DropDownList) {
@@ -152,16 +173,16 @@ var fn_foodMS_add_after_show = function (e) {
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
             marker = new google.maps.Marker({
-                position: pos,
-                map: map,
-                title: 'Main map'
-            });
+                                                position: pos,
+                                                map: map,
+                                                title: 'Main map'
+                                            });
 
             infowindow = new google.maps.InfoWindow({
-                map: map,
-                position: pos,
-                content: 'Your are here!'
-            });
+                                                        map: map,
+                                                        position: pos,
+                                                        content: 'Your are here!'
+                                                    });
 
             infoWindow_Food = new google.maps.InfoWindow();
 
@@ -247,7 +268,6 @@ var fn_foodMS_add_after_show = function (e) {
         alert('Please enable your Location.');
     }
     //END to get user location by geolocation
-  
 }
 
 function formatAMPM(date) {
