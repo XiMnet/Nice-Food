@@ -43,7 +43,9 @@ var foodMS_add = kendo.observable({
                                           }
                                           
                                           navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
-                                                                          quality : 50,
+                                                                          quality : 100,
+                                                                          targetWidth: 100,
+                                                                          targetHeight: 100,
                                                                           destinationType :  Camera.DestinationType.DATA_URL,
                                                                           sourceType : Camera.PictureSourceType.CAMERA
                                                                       });
@@ -64,7 +66,7 @@ var foodMS_add = kendo.observable({
                                                      success : function(data) {
                                                        
                                                          $("#log").html($("#log").html + "<br />" + "Uploaded! " )
-                                                         
+                                                         alert(data);
                                                      },
                                                      error : function(request, error) {
                                                          
