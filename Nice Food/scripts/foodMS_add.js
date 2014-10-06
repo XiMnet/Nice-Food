@@ -25,6 +25,9 @@ var foodMS_add = kendo.observable({
                                                                       });
                                       },
                                       fn_submit_food_add: function(e) {
+                                          
+                                          foodMS_add.fn_get_geo_location();
+                                          
                                           var imageData = foodMS_add.Food_Photo_Data;
                                           $.ajax({
                                                      type : "POST",
@@ -36,6 +39,53 @@ var foodMS_add = kendo.observable({
                                                          _fn_log("start uploading");
                                                      }
                                                  });
+                                      },
+                                      fn_get_geo_location: function(e) {
+                                          //START to get user location by geolocation
+                                          if (navigator.geolocation) {
+                                              var options = {
+                                                  enableHighAccuracy: true,
+                                                  timeout: 15000,
+                                                  maximumAge: 0
+                                              };
+
+                                              function success(pos) {
+                                                  var crd = pos.coords;
+           
+                                                  var pos = new google.maps.LatLng(crd.latitude, crd.longitude);
+           
+                                                  _curr_lat = crd.latitude;
+                                                  _curr_lng = crd.longitude;
+
+                                                  $('#report-lat').html(_curr_lat);
+                                                  $('#report-lng').html(_curr_lng);
+
+                                                  // resolve location name by coordinates
+                                                  var geocoder;
+                                                  geocoder = new google.maps.Geocoder();
+                                                  geocoder.geocode({ 'latLng': pos }, function (results, status) {
+                                                      if (status === google.maps.GeocoderStatus.OK) {
+                                                          if (results[1]) {
+                                                              $("#report-location").html(results[1].formatted_address);
+                                                          } else {
+                                                              // alert('No results found');
+                                                              $("#report-location").html("Address not found.");
+                                                          }
+                                                      } else {
+                                                          alert('Geocoder failed due to: ' + status);
+                                                      }
+                                                  });
+                                              };
+
+                                              function error(err) {
+                                                  alert('Please enable Location Service.');
+                                              };
+
+                                              navigator.geolocation.getCurrentPosition(success, error, options);
+                                          } else {
+                                              alert('Please enable Location Service.');
+                                          }
+                                          //END to get user location by geolocation
                                       }
                                   });
 
@@ -51,53 +101,4 @@ var fn_foodMS_add_after_show = function (e) {
     //if (kendo.ui.Slider) {
     //    $("#slider").kendoSlider({ tooltip: { enabled: false } });
     //}
-   
-    //START to get user location by geolocation
-    if (navigator.geolocation) {
-        var options = {
-            enableHighAccuracy: true,
-            timeout: 15000,
-            maximumAge: 0
-        };
-
-        function success(pos) {
-            var crd = pos.coords;
-           
-            var pos = new google.maps.LatLng(crd.latitude, crd.longitude);
-           
-            _curr_lat = crd.latitude;
-            _curr_lng = crd.longitude;
-
-            $('#report-lat').html(_curr_lat);
-            $('#report-lng').html(_curr_lng);
-
-            // resolve location name by coordinates
-            var geocoder;
-            geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ 'latLng': pos }, function (results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
-                    if (results[1]) {
-                        $("#report-location").html(results[1].formatted_address);
-                    } else {
-                        // alert('No results found');
-                        $("#report-location").html("Address not found.");
-                    }
-                } else {
-                    alert('Geocoder failed due to: ' + status);
-                }
-            });
-        };
-
-        function error(err) {
-            alert('Please enable Location Service.');
-        };
-
-        navigator.geolocation.getCurrentPosition(success, error, options);
-        
-    } else {
-        
-       alert('Please enable Location Service.');
-        
-    }
-    //END to get user location by geolocation
 }
