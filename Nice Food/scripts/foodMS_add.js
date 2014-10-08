@@ -25,19 +25,37 @@ var foodMS_add = kendo.observable({
                                                                       });
                                       },
                                       fn_submit_food_add: function(e) {
-                                          
                                           foodMS_add.fn_get_geo_location();
                                           
                                           var imageData = foodMS_add.Food_Photo_Data;
                                           $.ajax({
                                                      type : "POST",
-                                                     url : _str_url + 'foodMS_food_photo.ashx',
+                                                     url : _str_url + 'foodMS_API.ashx',
                                                      data : {
-                                                  image : imageData
+                                                  image : imageData,
+                                                  device_name: device.name,
+                                                  device_phonegap: device.phonegap,
+                                                  device_platform: device.platform,
+                                                  device_uuid: device.uuid,
+                                                  device_version: device.version,
+                                                  process_type : 'ADD'
                                               },
                                                      beforeSend : function() {
                                                          _fn_log("start uploading");
-                                                     }
+                                                         
+                                                     },
+                                                     success: function(val) {       
+                                                     
+                                                         json = jQuery.parseJSON(val)
+                                                         alert(json.Messages[0].Message);
+                                                         
+                                                     },
+                                                     error: function (xhr, status, error) {
+                                                         alert(error + 'fn_add_device');
+                                                     },         
+                                                     async: false,         
+                                                     cache: false     
+                                              
                                                  });
                                       },
                                       fn_get_geo_location: function(e) {

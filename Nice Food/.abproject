@@ -4,7 +4,7 @@
   "projectVersion": 1,
   "AppIdentifier": "com.telerik.NiceFood",
   "DisplayName": "Nice Food",
-  "Author": "",
+  "Author": "XiMnet Malaysia",
   "Description": "Nice Food",
   "BundleVersion": "1.0",
   "AndroidVersionCode": "1",
@@ -17,50 +17,50 @@
   "WP8Publisher": "",
   "WP8Capabilities": [],
   "WP8Requirements": [],
-  "WP8PublisherID": "",
-  "WP8ProductID": "",
+  "WP8PublisherID": "{40828562-069a-48e7-a72d-5ac228d6cef6}",
+  "WP8ProductID": "{02ee1bfa-3b99-4199-9e59-e9502e77b8f8}",
   "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
   "FrameworkVersion": "3.5.0",
   "CorePlugins": [
     "org.apache.cordova.battery-status",
     "org.apache.cordova.camera",
+    "org.apache.cordova.media-capture",
     "org.apache.cordova.console",
     "org.apache.cordova.contacts",
     "org.apache.cordova.device",
     "org.apache.cordova.device-motion",
     "org.apache.cordova.device-orientation",
-    "org.apache.cordova.dialogs",
     "org.apache.cordova.file",
     "org.apache.cordova.file-transfer",
     "org.apache.cordova.geolocation",
     "org.apache.cordova.globalization",
     "org.apache.cordova.inappbrowser",
     "org.apache.cordova.media",
-    "org.apache.cordova.media-capture",
     "org.apache.cordova.network-information",
+    "org.apache.cordova.dialogs",
     "org.apache.cordova.splashscreen",
     "org.apache.cordova.statusbar",
     "org.apache.cordova.vibration"
   ],
   "AndroidPermissions": [
-    "android.permission.CAMERA",
-    "android.permission.VIBRATE",
     "android.permission.ACCESS_COARSE_LOCATION",
     "android.permission.ACCESS_FINE_LOCATION",
     "android.permission.ACCESS_LOCATION_EXTRA_COMMANDS",
-    "android.permission.READ_PHONE_STATE",
-    "android.permission.INTERNET",
-    "android.permission.RECEIVE_SMS",
-    "android.permission.RECORD_AUDIO",
-    "android.permission.MODIFY_AUDIO_SETTINGS",
-    "android.permission.READ_CONTACTS",
-    "android.permission.WRITE_CONTACTS",
-    "android.permission.WRITE_EXTERNAL_STORAGE",
     "android.permission.ACCESS_NETWORK_STATE",
     "android.permission.ACCOUNT_MANAGER",
+    "android.permission.BROADCAST_STICKY",
+    "android.permission.CAMERA",
     "android.permission.GET_ACCOUNTS",
+    "android.permission.INTERNET",
     "android.permission.MANAGE_ACCOUNTS",
-    "android.permission.BROADCAST_STICKY"
+    "android.permission.MODIFY_AUDIO_SETTINGS",
+    "android.permission.READ_CONTACTS",
+    "android.permission.READ_PHONE_STATE",
+    "android.permission.RECEIVE_SMS",
+    "android.permission.RECORD_AUDIO",
+    "android.permission.VIBRATE",
+    "android.permission.WRITE_CONTACTS",
+    "android.permission.WRITE_EXTERNAL_STORAGE"
   ],
   "DeviceOrientations": [
     "Portrait",
@@ -73,5 +73,10 @@
     "ID_RESOLUTION_WXGA",
     "ID_RESOLUTION_HD720P"
   ],
-  "Framework": "Cordova"
+  "Framework": "Cordova",
+  "CordovaPluginVariables": {
+    "com.telerik.mobiletesting": {
+      "IOS_APP_URL": ""
+    }
+  }
 }

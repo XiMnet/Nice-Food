@@ -1,7 +1,7 @@
 //START - config
 var _str_url = "";
-//_str_url = "http://develop.alchemedia-01.ximnet.my/ximnet_lab/TelerikAppBuilder/NiceFood/web/services/";
-_str_url = "http://Lab_TelerikAppBuilder_NiceFood.ximnet.com.my/services/"
+_str_url = "http://develop.alchemedia-01.ximnet.my/ximnet_lab/TelerikAppBuilder/NiceFood/web/services/";
+//_str_url = "http://Lab_TelerikAppBuilder_NiceFood.ximnet.com.my/services/"
 
 var _int_update_location_internal = 5000; //miliseconds to update location to database
 var _int_check_update_internal = 5000; //miliseconds to check if need to update (used in report_crime.js)
@@ -51,10 +51,10 @@ function _fn_log(str_log){
     };
 
     // this function is called by Cordova when the application is loaded by the device
-    //   document.addEventListener('deviceready', function () {  
+       document.addEventListener('deviceready', function () {  
     // hide the splash screen as soon as the app is ready. otherwise
     // Cordova will wait 5 very long seconds to do it for you.
-    //   navigator.splashscreen.hide();
+       navigator.splashscreen.hide();
 
     app = new kendo.mobile.Application(document.body, {
         
@@ -65,5 +65,8 @@ function _fn_log(str_log){
                                            // the application needs to know which view to load first
                                            initial: 'views/home.html'
                                        });
-    // }, false);
+           
+        //   fn_update_device();
+           
+     }, false);
 }());
