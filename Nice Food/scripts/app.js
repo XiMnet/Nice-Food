@@ -1,7 +1,7 @@
-//START - config
+////START - config
 var _str_url = "";
 
-_str_url = "http://develop.alchemedia-01.ximnet.my/ximnet_lab/TelerikAppBuilder/NiceFood/web/services/";
+_str_url = "http://develop.alchemedia-01.ximnet.my/XTOPIA/dev/xtopia_platform_d02/API/";
 //_str_url = "http://Lab_TelerikAppBuilder_NiceFood.ximnet.com.my/services/"
 
 var _int_update_location_internal = 5000; //miliseconds to update location to database
@@ -17,18 +17,12 @@ var _food_photo_quality = 80; //compress food photo to this quality
 
 //END - config
 
-function _fn_error(str_error) {
-    alert(str_error);
+function _fn_error(str_error, str_page) {
+    alert(str_error + " @ " + str_page);
 }
 function _fn_log(str_log) {
     $("#log").html($("#log").html + "<br />" + str_log);
 }
-
-//function slide(href) {
-//    window.plugins.nativepagetransitions.slide({
-//        "href" : href
-//    });
-//}
 
 (function () {
     // store a reference to the application object that will be created
@@ -43,39 +37,61 @@ function _fn_log(str_log) {
                 },
             settings: {
                     title: 'Settings'
-                },
-            contacts: {
-                    title: 'Contacts',
-                    ds: new kendo.data.DataSource({
-                                                      data: [{ id: 1, name: 'Bob' }, { id: 2, name: 'Mary' }, { id: 3, name: 'John' }]
-                                                  }),
-                    alert: function(e) {
-                        alert(e.data.name);
-                    }
                 }
         }
     };
 
-    // this function is called by Cordova when the application is loaded by the device
-    document.addEventListener('deviceready', function () {  
-        // hide the splash screen as soon as the app is ready. otherwise
-        // Cordova will wait 5 very long seconds to do it for you.
-        navigator.splashscreen.hide();
+    //check if page is in device or web
+    is_device_check = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+    
+    is_device_check=true;
+    
+    //in device
+    if (is_device_check) {
+    
+        mobileMS.is_device = true;
+
+        // this function is called by Cordova when the application is loaded by the device
+        document.addEventListener('deviceready', function () {
+            // hide the splash screen as soon as the app is ready. otherwise
+            // Cordova will wait 5 very long seconds to do it for you.
+            navigator.splashscreen.hide();
+
+            app = new kendo.mobile.Application(document.body, {
+
+                // comment out the following line to get a UI which matches the look
+                // and feel of the operating system
+                skin: 'flat',
+
+                // the application needs to know which view to load first
+                initial: 'views/home.html'
+            });
+
+            //on load, we update the device information
+            mobileMS.fn_mobileMS_update();
+
+        }, false);
+
+    } else {
+        //in web browser
+
+        mobileMS.is_device = false;
 
         app = new kendo.mobile.Application(document.body, {
-        
-                                               // comment out the following line to get a UI which matches the look
-                                               // and feel of the operating system
-                                               skin: 'flat',
 
-                                               // the application needs to know which view to load first
-                                               initial: 'views/home.html'
-                                           });
-        
+            // comment out the following line to get a UI which matches the look
+            // and feel of the operating system
+            skin: 'flat',
+
+            // the application needs to know which view to load first
+            initial: 'views/home.html'
+        });
+
         //on load, we update the device information
         mobileMS.fn_mobileMS_update();
-        
-        
-        
-    }, false);
+
+    }
+
+    
+
 }());

@@ -13,23 +13,24 @@
         <!--<script src="kendo/js/kendo.all.min.js"></script>-->
 
         <!--Google Map-->
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_xpaM8HTVrbKqiDf_XgznkB7_2DKYCWc&sensor=true&libraries=places">
-        </script>
+        <!----><script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_xpaM8HTVrbKqiDf_XgznkB7_2DKYCWc&sensor=true&libraries=places">
+        </script>-->
 
         <!--models-->
-        <script src="scripts/app.js"></script>
+        
         <script src="scripts/home.js"></script>
         <script src="scripts/mobileMS.js"></script>
-        <script src="scripts/foodMS_add.js"></script>
-
+        <script src="scripts/app.js"></script>
+      
     </head>
     <body>
 
         <div data-role="layout" data-id="main">
             <div data-role="header">
                 <div data-role="navbar">
+                    <a id="backbutton" data-role="backbutton" data-align="left" data-icon="drawer-button">Back</a>
                     <span data-role="view-title"></span>
-                    <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+                    <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="right" data-icon="drawer-button"></a>
                 </div>
             </div>
 
@@ -38,7 +39,7 @@
         </div>
 
         <!-- application drawer and contents -->
-        <div data-role="drawer" id="appDrawer" style="width: 270px" data-title="Navigation">
+        <div data-role="drawer" id="appDrawer" style="width: 270px" data-title="Navigation" data-position="right" >
             <div data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
@@ -52,9 +53,8 @@
                     <a href="views/foodMS_add.html">Add Food</a>
                 </li>
                 <!--<li>
-                <a href="views/settings.html">Settings</a>
-                </li>-->
-
+            <a href="views/settings.html">Settings</a>
+            </li>-->
             </ul>
         </div>
     </body>

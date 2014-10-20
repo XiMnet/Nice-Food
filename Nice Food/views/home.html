@@ -1,9 +1,26 @@
-<div data-role="view" data-title="Home" data-layout="main" data-model="homeMS">
-    
-    <!--<h1 data-bind="html: title"></h1>-->
-    
-    <h1>Home</h1>
+<div data-role="view" data-title="Home" data-model="homeMS">
 
-    <button id="btnLogin" data-bind="click: fn_login">Login</button>
+    <div data-role="header">
+        <div data-role="navbar">
+           
+            <span data-role="view-title"></span>
+            <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="right" data-icon="drawer-button"></a>
+        </div>
+    </div>
+
+    <h1>Home</h1>
+    <div class="content">
+
+        <button data-role="button" id="btnLogin" data-bind="click: fn_login">Login</button>
+        
+        <div>
+            
+            <a data-role="button" href="views/register.html" data-transition="slide:right">Register</a>
+
+        </div>
+
+        
+
+    </div>
 
 </div>
